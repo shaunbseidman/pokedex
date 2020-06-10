@@ -20,6 +20,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <h2>Your Pokedex</h2>
       <List pokemon={pokemons}/>
     </div>
   )
