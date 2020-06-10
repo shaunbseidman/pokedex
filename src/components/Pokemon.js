@@ -1,4 +1,5 @@
 import React from 'react';
+import List from './List';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -19,11 +20,13 @@ const useStyles = makeStyles({
     },
   });
 
-export default function Pokemon() {
+export default function Pokemon({title, image, name, number}) {
     const classes = useStyles();
   return (
     <Card className={classes.root}>
-        pokemon!
+        <h2>Pokemon Name: {name}</h2>
+        <p>Number: {number}</p>
+        <img src={image} alt={title} />
     </Card>
   );
 }
