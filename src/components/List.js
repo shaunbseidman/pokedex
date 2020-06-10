@@ -1,26 +1,47 @@
 import React, {useEffect, useState} from 'react';
-import Card from '@material-ui/core/Card';
+import {TextField} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+import Pokemon from './Pokemon';
+import GridList from '@material-ui/core/GridList';
 
 const useStyles = makeStyles({
-    list: {
-        width: '120px',
-        height: '120px',
-        margin: '10px',
-        backgroundColor: 'blue',
-        border: 'none',
-        borderRadius: '5px',
-        boxShadow: '0 2px 2px 0 rgba(0, 0, 0, 0.16)'
-    }
+
   });
 
-const List = ({title, image, name, num}) => {
+const List = ({pokemon}) => {
   const classes = useStyles();
+  const [search, setSearch] = useState("");
+  const [filteredPokemon, setFilteredPokemon] = useState([]);
+
+  useEffect(() => {
+    setFilteredPokemon(
+    pokemon.filter(pokemon =>
+        pokemon.name.toLowerCase().includes(search.toLowerCase())
+    )
+  );
+}, [search, pokemon]);
 
     return(
-        <Card className={classes.root}>
- 
-        </Card>
+        <div>
+            <TextField
+                type="text"
+                className={classes.searchForm}
+                variant="outlined"
+                placeholder="Search For A Pokemon"
+                onChange={e => setSearch(e.target.value)}
+            />
+            <GridList cellHeight={180} className={classes.gridList}>
+                {filteredPokemon.map(pokemon => (
+                    <Pokemon
+                    key={pokemon.id}
+                    name={pokemon.name}
+                    number={pokemon.num}
+                    type={pokemon.type}
+                    weakness={pokemon.weakness}
+                    image={pokemon.img} />
+                ))}
+            </GridList>
+        </div>
     )
 }
 

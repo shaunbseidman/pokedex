@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import Pokemon from './components/Pokemon'
+import List from './components/List'
 
 const App = () => {
   const [pokemons, setPokemon] = useState([]);
@@ -15,19 +15,12 @@ const App = () => {
       const res = await fetch(pokeUrl);
       const data = await res.json()
       setPokemon(data.pokemon)
+      console.log(data.pokemon)
   }
 
   return (
     <div className="App">
-      {
-       pokemons.map(pokemon => (
-           <Pokemon
-            key={pokemon.id}
-            name={pokemon.name}
-            number={pokemon.num}
-            image={pokemon.img} />
-         ))
-       }
+      <List pokemon={pokemons}/>
     </div>
   )
 };
