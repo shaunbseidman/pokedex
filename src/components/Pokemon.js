@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import List from './List';
 import Card from '@material-ui/core/Card';
-import {TextField} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+import  '../styles/list.scss';
 
 const useStyles = makeStyles({
     root: {
@@ -29,15 +28,21 @@ export default function Pokemon({weaknesses, title, image, name, number, type}) 
         <Card className={classes.root}>
             <h2>Name: {name}</h2>
             <p>Number: {number}</p>
-            <div>
-               Type: {type.map(pokeType => (
-                    <p>{pokeType}</p>
-                ))}
+            <div className="types">
+                <h4 className="types-header">Type: </h4>
+                <div className="types-type">
+                {type.map(pokeType => (
+                        <div>{pokeType}</div>
+                    ))}
+                </div>
             </div>
-            <div>
-            Weaknesses: {weaknesses.map(weakness => (
-                    <p>{weakness}</p>
-                ))}
+            <div className="weaknesses">
+                <h4 className="weaknesses-header">Type: </h4>
+                <div className="weaknesses-weakness">
+                {weaknesses.map(weakness => (
+                        <div>{weakness}</div>
+                    ))}
+                </div>
             </div>
             <img src={image} alt={title} />
         </Card>

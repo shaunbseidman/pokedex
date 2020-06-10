@@ -11,7 +11,9 @@ const useStyles = makeStyles({
 const List = ({pokemon}) => {
   const classes = useStyles();
   const [search, setSearch] = useState("");
+  const [type, setTypeSearch] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
+  const [filteredType, setFilteredType] = useState([]);
 
   useEffect(() => {
     setFilteredPokemon(
@@ -21,6 +23,14 @@ const List = ({pokemon}) => {
   );
 }, [search, pokemon]);
 
+    useEffect(() => {
+        setFilteredType(
+        pokemon.filter(pokemon =>
+            pokemon.name.toLowerCase().includes(type.toLowerCase())
+        )
+    );
+}, [type, pokemon]);
+
     return(
         <div>
             <TextField
@@ -29,6 +39,13 @@ const List = ({pokemon}) => {
                 variant="outlined"
                 placeholder="Search For A Pokemon"
                 onChange={e => setSearch(e.target.value)}
+            />
+            <TextField
+                type="text"
+                className={classes.searchForm}
+                variant="outlined"
+                placeholder="Search By Type"
+                onChange={e => setTypeSearch(e.target.value)}
             />
             <GridList cellHeight={180} className={classes.gridList}>
                 {filteredPokemon.map(pokemon => (

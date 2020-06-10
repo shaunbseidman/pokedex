@@ -1,0 +1,21 @@
+.types {
+    &-header {
+        margin-bottom: 0px;
+    }
+
+    &-type {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.weaknesses {
+    &-header {
+        margin-bottom: 0px;
+    }
+
+    &-weakness {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
