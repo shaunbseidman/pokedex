@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     },
   });
 
-export default function Pokemon({pokemon, title, image, name, number, weakness, type}) {
+export default function Pokemon({weaknesses, title, image, name, number, type}) {
     const classes = useStyles();
 
   return (
@@ -29,8 +29,16 @@ export default function Pokemon({pokemon, title, image, name, number, weakness, 
         <Card className={classes.root}>
             <h2>Name: {name}</h2>
             <p>Number: {number}</p>
-            <p>Type: {type}</p>
-            <p>Weakness: {weakness}</p>
+            <div>
+               Type: {type.map(pokeType => (
+                    <p>{pokeType}</p>
+                ))}
+            </div>
+            <div>
+            Weaknesses: {weaknesses.map(weakness => (
+                    <p>{weakness}</p>
+                ))}
+            </div>
             <img src={image} alt={title} />
         </Card>
       </div>

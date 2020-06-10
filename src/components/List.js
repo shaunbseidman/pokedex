@@ -37,7 +37,7 @@ const List = ({pokemon}) => {
                     name={pokemon.name}
                     number={pokemon.num}
                     type={pokemon.type}
-                    weakness={pokemon.weakness}
+                    weaknesses={pokemon.weaknesses}
                     image={pokemon.img} />
                 ))}
             </GridList>
