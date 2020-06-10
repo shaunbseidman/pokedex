@@ -15,7 +15,6 @@ const App = () => {
       const res = await fetch(pokeUrl);
       const data = await res.json()
       setPokemon(data.pokemon)
-      console.log(data.pokemon)
   }
 
   return (

@@ -12,6 +12,9 @@ const useStyles = makeStyles({
         justifyContent: 'space-around',
         overflow: 'hidden',
         margin: '6rem',
+        [BREAKPOINTS.down('sm')]: {
+            margin: '0',
+        },
     },
     gridList: {
         margin: '2rem',
@@ -30,9 +33,7 @@ const useStyles = makeStyles({
 const List = ({pokemon}) => {
   const classes = useStyles();
   const [search, setSearch] = useState("");
-  const [type, setTypeSearch] = useState("");
   const [filteredPokemon, setFilteredPokemon] = useState([]);
-  const [filteredType, setFilteredType] = useState([]);
 
   useEffect(() => {
     setFilteredPokemon(
@@ -41,14 +42,8 @@ const List = ({pokemon}) => {
     )
   );
 }, [search, pokemon]);
+// pokemon.filter(poke=>poke.weaknesses.includes("Fire")).forEach(poke=>poke.name)
 
-    useEffect(() => {
-        setFilteredType(
-        pokemon.filter(pokemon =>
-            pokemon.name.toLowerCase().includes(type.toLowerCase())
-        )
-    );
-}, [type, pokemon]);
 
     return(
         <div>
@@ -60,7 +55,7 @@ const List = ({pokemon}) => {
                 onChange={e => setSearch(e.target.value)}
             />
             <div className={classes.root}>
-                <div cellHeight={180} className={classes.gridList}>
+                <div className={classes.gridList}>
                     {filteredPokemon.map(pokemon => (
                         <Pokemon
                         key={pokemon.id}
